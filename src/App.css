@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  color: #20372c;
+  background: #f7f8f3;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+.buttonlink {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  background: #1e6745;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9aac9e;
+  cursor: not-allowed;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 6%;
+  background: white;
+  border-bottom: 1px solid #e2e8df;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.brand {
+  color: #174b36;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 22px;
+}
+
+.navbar nav a {
+  color: #51665a;
+  font-weight: 600;
+}
+
+.navbar nav a.active {
+  color: #1e6745;
+}
+
+.hero {
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  padding: 60px 9%;
+  background:
+    linear-gradient(90deg, rgba(244, 247, 237, .95), rgba(244, 247, 237, .55)),
+    url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1600&q=85") center / cover no-repeat;
+}
+
+.hero-content {
+  max-width: 570px;
+}
+
+.hero h1,
+.container>h1,
+.about h2 {
+  font-family: "Playfair Display", serif;
+  color: #174b36;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 5rem);
+  margin: 12px 0;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+}
+
+.hero p {
+  line-height: 1.8;
+  color: #56685b;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #54805e;
+  font-weight: 700;
+  font-size: .8rem;
+}
+
+.about {
+  max-width: 850px;
+  margin: auto;
+  padding: 65px 24px;
+  text-align: center;
+  line-height: 1.8;
+  color: #627166;
+}
+
+.about h2 {
+  font-size: 2.3rem;
+}
+
+footer {
+  padding: 22px;
+  text-align: center;
+  background: #174b36;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 38px 24px 70px;
+}
+
+.container>h1 {
+  text-align: center;
+  font-size: 2.8rem;
+}
+
+.intro {
+  text-align: center;
+  color: #718074;
+  margin-bottom: 40px;
+}
+
+.container section {
+  margin: 40px 0;
+}
+
+.container section>h2 {
+  color: #174b36;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e4e9e0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.cardbody {
+  padding: 16px;
+}
+
+.cardbody p {
+  color: #718074;
+  min-height: 40px;
+}
+
+.cardbody strong {
+  display: block;
+  color: #174b36;
+  margin: 12px 0;
+}
+
+.cartlist {
+  display: grid;
+  gap: 16px;
+}
+
+.cartrow {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #e4e9e0;
+  border-radius: 12px;
+}
+
+.cartrow img {
+  width: 140px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cartinfo {
+  flex: 1;
+}
+
+.cartinfo p {
+  color: #68776b;
+}
+
+.qty {
+  display: inline-block;
+  margin: 0 14px;
+  font-weight: 700;
+}
+
+.delete {
+  margin-left: 12px;
+  background: #f6e7e3;
+  color: #933e30;
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 22px;
+  background: #e8f0e5;
+  border-radius: 12px;
+}
+
+.summary h2 {
+  color: #174b36;
+}
+
+.light {
+  background: white;
+  color: #1e6745;
+  border: 1px solid #cbd8ca;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .navbar nav {
+    gap: 18px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .card img {
+    height: 160px;
+  }
+
+  .cartrow img {
+    width: 95px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
