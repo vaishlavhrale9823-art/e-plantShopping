@@ -7,13 +7,25 @@ import {
     removeFromCart,
     selectCartItems,
     selectCartTotal,
-} from "../cartSlice.jsx";
+} from "../CartSlice.jsx";
 import Navbar from "./Navbar.jsx";
 
 export default function CartItem() {
     const dispatch = useDispatch();
     const items = useSelector(selectCartItems);
     const total = useSelector(selectCartTotal);
+
+    const handleIncrease = (id) => {
+        dispatch(increaseQuantity(id));
+    };
+
+    const handleDecrease = (id) => {
+        dispatch(decreaseQuantity(id));
+    };
+
+    const handleRemove = (id) => {
+        dispatch(removeFromCart(id));
+    };
 
     return (
         <>
@@ -35,43 +47,51 @@ export default function CartItem() {
                         <div className="cartlist">
                             {items.map((plant) => (
                                 <article className="cartrow" key={plant.id}>
-                                    <img src={plant.image} alt={plant.name} />
+                                    <img
+                                        src={plant.image}
+                                        alt={plant.name}
+                                    />
 
                                     <div className="cartinfo">
                                         <h2>{plant.name}</h2>
 
                                         <p>
-                                            Unit price: ${plant.price.toFixed(2)}
+                                            Unit price: $
+                                            {Number(plant.price).toFixed(2)}
                                         </p>
 
                                         <p>
                                             Item total: $
-                                            {(plant.price * plant.quantity).toFixed(2)}
+                                            {(
+                                                Number(plant.price) *
+                                                plant.quantity
+                                            ).toFixed(2)}
                                         </p>
 
                                         <button
-                                            onClick={() =>
-                                                dispatch(decreaseQuantity(plant.id))
-                                            }
+                                            type="button"
+                                            onClick={() => handleDecrease(plant.id)}
+                                            aria-label={`Decrease ${plant.name} quantity`}
                                         >
                                             −
                                         </button>
 
-                                        <span className="qty">{plant.quantity}</span>
+                                        <span className="qty">
+                                            {plant.quantity}
+                                        </span>
 
                                         <button
-                                            onClick={() =>
-                                                dispatch(increaseQuantity(plant.id))
-                                            }
+                                            type="button"
+                                            onClick={() => handleIncrease(plant.id)}
+                                            aria-label={`Increase ${plant.name} quantity`}
                                         >
                                             +
                                         </button>
 
                                         <button
+                                            type="button"
                                             className="delete"
-                                            onClick={() =>
-                                                dispatch(removeFromCart(plant.id))
-                                            }
+                                            onClick={() => handleRemove(plant.id)}
                                         >
                                             Delete
                                         </button>
@@ -81,15 +101,19 @@ export default function CartItem() {
                         </div>
 
                         <aside className="summary">
-                            <h2>Total: ${total.toFixed(2)}</h2>
+                            <h2>Total: ${Number(total).toFixed(2)}</h2>
 
                             <button
+                                type="button"
                                 onClick={() => window.alert("Coming Soon!")}
                             >
                                 Checkout
                             </button>
 
-                            <Link className="buttonlink light" to="/plants">
+                            <Link
+                                className="buttonlink light"
+                                to="/plants"
+                            >
                                 Continue Shopping
                             </Link>
                         </aside>
