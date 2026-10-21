@@ -10,7 +10,9 @@ function LandingPage() {
     <main className="landing">
       <Navbar />
 
-      <section className="hero">
+
+      <section className="hero background-image">
+
         <div className="hero-content">
           <p className="eyebrow">WELCOME TO YOUR GREEN SPACE</p>
 
