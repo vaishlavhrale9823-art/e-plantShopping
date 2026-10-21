@@ -6,23 +6,35 @@ import {
     increaseQuantity,
     removeFromCart,
     selectCartItems,
-    selectCartTotal,
 } from "../CartSlice.jsx";
 import Navbar from "./Navbar.jsx";
+
+// Calculate the total cost of all items in the cart.
+function calculateTotalAmount(items) {
+    return items.reduce(
+        (total, item) =>
+            total + Number(item.price) * Number(item.quantity),
+        0
+    );
+}
 
 export default function CartItem() {
     const dispatch = useDispatch();
     const items = useSelector(selectCartItems);
-    const total = useSelector(selectCartTotal);
 
+    const total = calculateTotalAmount(items);
+
+    // Increase the quantity of a plant.
     const handleIncrease = (id) => {
         dispatch(increaseQuantity(id));
     };
 
+    // Decrease the quantity of a plant.
     const handleDecrease = (id) => {
         dispatch(decreaseQuantity(id));
     };
 
+    // Remove a plant from the cart.
     const handleRemove = (id) => {
         dispatch(removeFromCart(id));
     };
@@ -38,6 +50,7 @@ export default function CartItem() {
                     <section className="empty">
                         <h2>Your cart is empty</h2>
                         <p>Discover plants for your home.</p>
+
                         <Link className="buttonlink" to="/plants">
                             Continue Shopping
                         </Link>
@@ -47,10 +60,7 @@ export default function CartItem() {
                         <div className="cartlist">
                             {items.map((plant) => (
                                 <article className="cartrow" key={plant.id}>
-                                    <img
-                                        src={plant.image}
-                                        alt={plant.name}
-                                    />
+                                    <img src={plant.image} alt={plant.name} />
 
                                     <div className="cartinfo">
                                         <h2>{plant.name}</h2>
@@ -64,7 +74,7 @@ export default function CartItem() {
                                             Item total: $
                                             {(
                                                 Number(plant.price) *
-                                                plant.quantity
+                                                Number(plant.quantity)
                                             ).toFixed(2)}
                                         </p>
 
@@ -76,9 +86,7 @@ export default function CartItem() {
                                             −
                                         </button>
 
-                                        <span className="qty">
-                                            {plant.quantity}
-                                        </span>
+                                        <span className="qty">{plant.quantity}</span>
 
                                         <button
                                             type="button"
@@ -101,7 +109,7 @@ export default function CartItem() {
                         </div>
 
                         <aside className="summary">
-                            <h2>Total: ${Number(total).toFixed(2)}</h2>
+                            <h2>Total: ${total.toFixed(2)}</h2>
 
                             <button
                                 type="button"
@@ -110,10 +118,7 @@ export default function CartItem() {
                                 Checkout
                             </button>
 
-                            <Link
-                                className="buttonlink light"
-                                to="/plants"
-                            >
+                            <Link className="buttonlink light" to="/plants">
                                 Continue Shopping
                             </Link>
                         </aside>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     addToCart,
     selectCartItems,
-} from "../cartSlice.jsx";
+} from "../CartSlice.jsx";
 import { plantCategories } from "../data/plants.js";
 import Navbar from "./Navbar.jsx";
 
@@ -11,7 +11,13 @@ export default function ProductList() {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
 
+    // Collect the IDs of plants already in the cart.
     const addedIds = cartItems.map((item) => item.id);
+
+    // Add a plant to the Redux cart.
+    const handleAddToCart = (plant) => {
+        dispatch(addToCart(plant));
+    };
 
     return (
         <>
@@ -19,6 +25,7 @@ export default function ProductList() {
 
             <main className="container">
                 <h1>Shop Houseplants</h1>
+
                 <p className="intro">
                     Find the perfect green companion for your home.
                 </p>
@@ -36,19 +43,30 @@ export default function ProductList() {
                                         <img
                                             src={plant.image}
                                             alt={plant.name}
+                                            loading="lazy"
                                         />
 
                                         <div className="cardbody">
                                             <h3>{plant.name}</h3>
-                                            <p>{plant.description || "A beautiful houseplant for your home."}</p>
+
+                                            <p>
+                                                {plant.description ||
+                                                    "A beautiful houseplant for your home."}
+                                            </p>
 
                                             <strong>
-                                                ${plant.price.toFixed(2)}
+                                                ${Number(plant.price).toFixed(2)}
                                             </strong>
 
                                             <button
+                                                type="button"
                                                 disabled={isAdded}
-                                                onClick={() => dispatch(addToCart(plant))}
+                                                onClick={() => handleAddToCart(plant)}
+                                                aria-label={
+                                                    isAdded
+                                                        ? `${plant.name} added to cart`
+                                                        : `Add ${plant.name} to cart`
+                                                }
                                             >
                                                 {isAdded ? "Added to Cart" : "Add to Cart"}
                                             </button>
