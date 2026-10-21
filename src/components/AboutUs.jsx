@@ -1,22 +1,29 @@
 
 export default function AboutUs() {
     return (
-        <section className="about">
+        <div className="about-us-container">
             <p className="eyebrow">OUR STORY</p>
 
-            <h2>Helping Your Home Grow Greener</h2>
+            <h2>About Paradise Nursery</h2>
 
             <p>
-                Paradise Nursery makes it easy to bring the beauty
-                of nature into your home. We offer a selection of
-                beautiful houseplants for every room and lifestyle.
+                Paradise Nursery is an online plant shop dedicated
+                to helping people bring the beauty of nature into
+                their homes and everyday lives.
             </p>
 
             <p>
-                Whether you are a beginner or an experienced plant
-                lover, our goal is to help you create a greener,
-                healthier, and more welcoming space.
+                Our mission is to make indoor gardening easy and
+                enjoyable for everyone by offering a selection of
+                beautiful houseplants for different rooms and
+                lifestyles.
             </p>
-        </section>
+
+            <p>
+                We aim to help beginners and experienced plant
+                lovers create greener, healthier, and more welcoming
+                spaces by making plant shopping simple and accessible.
+            </p>
+        </div>
     );
 }
