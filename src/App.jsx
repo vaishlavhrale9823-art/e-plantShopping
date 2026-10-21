@@ -1,22 +1,27 @@
 
-import { Link, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import ProductList from "./components/ProductList.jsx";
 import CartItem from "./components/CartItem.jsx";
 
 function LandingPage() {
+  const [showProductList, setShowProductList] = useState(false);
+
+  if (showProductList) {
+    return <ProductList />;
+  }
+
   return (
     <main className="landing">
       <Navbar />
 
-
       <section className="hero background-image">
-
         <div className="hero-content">
           <p className="eyebrow">WELCOME TO YOUR GREEN SPACE</p>
 
-          <h1>Paradise Nursery</h1>
+          <h1>Welcome to Paradise Nursery</h1>
 
           <h2>Bring home a little paradise.</h2>
 
@@ -25,9 +30,12 @@ function LandingPage() {
             fresher, greener, and more welcoming.
           </p>
 
-          <Link className="buttonlink" to="/plants">
+          <button
+            className="buttonlink"
+            onClick={() => setShowProductList(true)}
+          >
             Get Started
-          </Link>
+          </button>
         </div>
       </section>
 
