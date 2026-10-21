@@ -9,6 +9,10 @@ import CartItem from "./components/CartItem.jsx";
 function LandingPage() {
   const [showProductList, setShowProductList] = useState(false);
 
+  const handleGetStarted = () => {
+    setShowProductList(true);
+  };
+
   if (showProductList) {
     return <ProductList />;
   }
@@ -31,8 +35,9 @@ function LandingPage() {
           </p>
 
           <button
+            type="button"
             className="buttonlink"
-            onClick={() => setShowProductList(true)}
+            onClick={handleGetStarted}
           >
             Get Started
           </button>
